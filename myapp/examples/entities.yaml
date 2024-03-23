@@ -12,6 +12,11 @@ apiVersion: backstage.io/v1alpha1
 kind: Component
 metadata:
   name: example-website
+  description: just for fun right?
+  annotations:
+    prometheus.io/rule: node_memory_MemAvailable_bytes|instance
+   # prometheus.io/rule: node_memory_MemFree_bytes
+    prometheus.io/alert: 'Excessive Memory Usage'
 spec:
   type: website
   lifecycle: experimental

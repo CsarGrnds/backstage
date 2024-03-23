@@ -58,6 +58,22 @@ import {
 import { TechDocsAddons } from '@backstage/plugin-techdocs-react';
 import { ReportIssue } from '@backstage/plugin-techdocs-module-addons-contrib';
 
+import {
+  EntityCircleCIContent,
+  isCircleCIAvailable,
+} from '@circleci/backstage-plugin';
+
+import {
+  EntityPrometheusContent,
+  EntityPrometheusAlertCard,  
+  EntityPrometheusGraphCard,
+} from '@roadiehq/backstage-plugin-prometheus';
+
+import { 
+  EntitySecurityInsightsContent,
+  EntitySecurityInsightsCard,
+} from '@roadiehq/backstage-plugin-security-insights';
+
 const techdocsContent = (
   <EntityTechdocsContent>
     <TechDocsAddons>
@@ -70,8 +86,8 @@ const cicdContent = (
   // This is an example of how you can implement your company's logic in entity page.
   // You can for example enforce that all components of type 'service' should use GitHubActions
   <EntitySwitch>
-    <EntitySwitch.Case if={isGithubActionsAvailable}>
-      <EntityGithubActionsContent />
+    <EntitySwitch.Case if={isCircleCIAvailable}>
+      <EntityCircleCIContent />
     </EntitySwitch.Case>
 
     <EntitySwitch.Case>
@@ -137,6 +153,18 @@ const overviewContent = (
     <Grid item md={8} xs={12}>
       <EntityHasSubcomponentsCard variant="gridItem" />
     </Grid>
+
+    <Grid item md={8}>
+      <EntityPrometheusAlertCard />
+    </Grid>
+    <Grid item md={6}>
+      <EntityPrometheusGraphCard />
+    </Grid>
+
+    <Grid item md={6}>
+      <EntitySecurityInsightsCard />
+    </Grid>
+
   </Grid>
 );
 
@@ -175,7 +203,18 @@ const serviceEntityPage = (
     <EntityLayout.Route path="/docs" title="Docs">
       {techdocsContent}
     </EntityLayout.Route>
+
+    <EntityLayout.Route path="/prometheus" title="Prometheus">
+      <EntityPrometheusContent />
+    </EntityLayout.Route>
+
+    <EntityLayout.Route path="/security-insights" title="Security Insights">
+      <EntitySecurityInsightsContent />
+    </EntityLayout.Route>
   </EntityLayout>
+
+
+
 );
 
 const websiteEntityPage = (

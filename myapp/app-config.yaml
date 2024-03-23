@@ -3,7 +3,7 @@ app:
   baseUrl: http://localhost:3000
 
 organization:
-  name: My Company
+  name: Wabtec
 
 backend:
   # Used for enabling authentication, secret is shared by all backend plugins
@@ -27,7 +27,6 @@ backend:
     credentials: true
   # This is for local development only, it is not recommended to use this in production
   # The production database configuration is stored in app-config.production.yaml
-  # workingDirectory: /tmp # Use this to configure a working directory for the scaffolder, defaults to the OS temp-dir
   database:
       client: pg
       connection:
@@ -35,13 +34,14 @@ backend:
         port: ${POSTGRES_PORT}
         user: ${POSTGRES_USER}
         password: ${POSTGRES_PASSWORD}
-
+  # workingDirectory: /tmp # Use this to configure a working directory for the scaffolder, defaults to the OS temp-dir
 
 integrations:
   github:
     - host: github.com
       # This is a Personal Access Token or PAT from GitHub. You can find out how to generate this token, and more information
-      # about setting up the GitHub integration here: https://backstage.io/docs/integrations/github/locations#configuration
+      # about setting up the GitHub integration here: https://backstage.io/docs/getting-started/configuration#setting-up-a-github-integration
+ #     token: ${GITHUB_TOKEN}
       token: ${GITHUB_TOKEN}
     ### Example for how to add your GitHub Enterprise instance using the API:
     # - host: ghe.example.net
@@ -60,6 +60,24 @@ proxy:
 # Note: After experimenting with basic setup, use CI/CD to generate docs
 # and an external cloud storage when deploying TechDocs for production use-case.
 # https://backstage.io/docs/features/techdocs/how-to-guides#how-to-migrate-from-techdocs-basic-to-recommended-deployment-approach
+  '/circleci/api':
+    target: https://circleci.com/api/v1.1
+    headers:
+      Circle-Token: CCIPAT_GmN7inUfRBWhL5AFZgMxz1_af5b76f2a026f75c456db1eb19e00a786ab87974
+
+  '/prometheus/api':
+    # url to the api and path of your hosted prometheus instance
+    target: https://prometheus.demo.do.prometheus.io/api/v1
+    changeOrigin: true
+    secure: true
+#    headers:
+#      Authorization: ${YOUR_AUTH_TOKEN_IF_PROMETHEUS_IS_SECURED}
+
+prometheus:
+  proxyPath: /prometheus/api
+  uiUrl: https://prometheus.demo.do.prometheus.io
+
+
 techdocs:
   builder: 'local' # Alternatives - 'external'
   generator:
@@ -69,25 +87,19 @@ techdocs:
 
 #auth:
   # see https://backstage.io/docs/auth/ to learn about auth providers
-#  providers:
-    # See https://backstage.io/docs/auth/guest/provider
-#    guest: {}
-
-#    github:
-#      development:
-#        clientId: 8421ba6a360e4b2234e8
- #       clientSecret: 9bf61ffbe981bfb530df72afeb66b2f2863364f4    
+#  providers: {}
 
 auth:
-  # see https://backstage.io/docs/auth/ to learn about auth providers
   environment: development
   providers:
     github:
       development:
-        clientId: b5a87cc15c972c51747d
-        clientSecret: 1266292c81d1b56bfb321b302a0fe5e975652f05
-    
-    guest: {}
+#        clientId: ${AUTH_GITHUB_CLIENT_ID}
+#        clientSecret: ${AUTH_GITHUB_CLIENT_SECRET}
+        clientId: eb41eb78bce1a8bd1fb1
+        clientSecret: 7a85175979e62dc9ef581a8657e3874b1c828e60
+        ## uncomment if using GitHub Enterprise
+        # enterpriseInstanceUrl: ${AUTH_GITHUB_ENTERPRISE_INSTANCE_URL}
 
 
 scaffolder:
