@@ -17,10 +17,10 @@ backend:
   database:
     client: pg
     connection:
-      host: 127.0.0.1
-      port: 5432
-      user: backstage_db_user
-      password: backstage_db_password
+      host: ${POSTGRES_HOST}
+      port: ${POSTGRES_PORT}
+      user: ${POSTGRES_USER}
+      password: ${POSTGRES_PASSWORD}
 
       # https://node-postgres.com/features/ssl
       # you can set the sslmode configuration option via the `PGSSLMODE` environment variable
