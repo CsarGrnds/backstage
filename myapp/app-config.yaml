@@ -3,7 +3,7 @@ app:
   baseUrl: http://localhost:3000
 
 organization:
-  name: Wabtec
+  name: Teknixx
 
 backend:
   # Used for enabling authentication, secret is shared by all backend plugins
@@ -77,7 +77,6 @@ prometheus:
   proxyPath: /prometheus/api
   uiUrl: https://prometheus.demo.do.prometheus.io
 
-
 techdocs:
   builder: 'local' # Alternatives - 'external'
   generator:
@@ -94,13 +93,10 @@ auth:
   providers:
     github:
       development:
-#        clientId: ${AUTH_GITHUB_CLIENT_ID}
-#        clientSecret: ${AUTH_GITHUB_CLIENT_SECRET}
-        clientId: eb41eb78bce1a8bd1fb1
-        clientSecret: 7a85175979e62dc9ef581a8657e3874b1c828e60
+        clientId: ${AUTH_GITHUB_CLIENT_ID}
+        clientSecret: ${AUTH_GITHUB_CLIENT_SECRET}
         ## uncomment if using GitHub Enterprise
         # enterpriseInstanceUrl: ${AUTH_GITHUB_ENTERPRISE_INSTANCE_URL}
-
 
 scaffolder:
   # see https://backstage.io/docs/features/software-templates/configuration for software template options
