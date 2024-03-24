@@ -74,6 +74,8 @@ import {
   EntitySecurityInsightsCard,
 } from '@roadiehq/backstage-plugin-security-insights';
 
+import { EntityKubernetesContent } from '@backstage/plugin-kubernetes';
+
 const techdocsContent = (
   <EntityTechdocsContent>
     <TechDocsAddons>
@@ -211,10 +213,11 @@ const serviceEntityPage = (
     <EntityLayout.Route path="/security-insights" title="Security Insights">
       <EntitySecurityInsightsContent />
     </EntityLayout.Route>
+
+    <EntityLayout.Route path="/kubernetes" title="Kubernetes">
+      <EntityKubernetesContent refreshIntervalMs={30000} />
+    </EntityLayout.Route>
   </EntityLayout>
-
-
-
 );
 
 const websiteEntityPage = (
