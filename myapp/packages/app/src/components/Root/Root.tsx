@@ -26,6 +26,7 @@ import {
 } from '@backstage/core-components';
 import MenuIcon from '@material-ui/icons/Menu';
 import SearchIcon from '@material-ui/icons/Search';
+import { RBACSidebarItem } from '@spotify/backstage-plugin-rbac';
 
 const useSidebarLogoStyles = makeStyles({
   root: {
@@ -73,6 +74,7 @@ export const Root = ({ children }: PropsWithChildren<{}>) => (
         <SidebarDivider />
         <SidebarScrollWrapper>
           <SidebarItem icon={MapIcon} to="tech-radar" text="Tech Radar" />
+          <RBACSidebarItem />
         </SidebarScrollWrapper>
       </SidebarGroup>
       <SidebarSpace />

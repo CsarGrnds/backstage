@@ -35,6 +35,7 @@ import { RequirePermission } from '@backstage/plugin-permission-react';
 import { catalogEntityCreatePermission } from '@backstage/plugin-catalog-common/alpha';
 import { githubAuthApiRef } from '@backstage/core-plugin-api';
 import { SignInPage } from '@backstage/core-components';
+import { RBACRoot } from '@spotify/backstage-plugin-rbac';
 
 const app = createApp({
   apis,
@@ -111,6 +112,7 @@ const routes = (
     </Route>
     <Route path="/settings" element={<UserSettingsPage />} />
     <Route path="/catalog-graph" element={<CatalogGraphPage />} />
+    <Route path="/rbac" element={<RBACRoot />} />
   </FlatRoutes>
 );
 

@@ -45,6 +45,7 @@
     "@material-ui/icons": "^4.9.1",
     "@roadiehq/backstage-plugin-prometheus": "2.8.6",
     "@roadiehq/backstage-plugin-security-insights": "^2.3.15",
+    "@spotify/backstage-plugin-rbac": "^0.6.1",
     "history": "^5.0.0",
     "react": "^18.0.2",
     "react-dom": "^18.0.2",
